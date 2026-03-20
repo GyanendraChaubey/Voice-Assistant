@@ -1,17 +1,9 @@
 import { useState } from 'react';
-import { Search, Compass, Library, PlusCircle, Settings, User } from 'lucide-react';
-import VoiceAssistantButton from './components/VoiceAssistantButton';
-import VoiceAssistantModal from './components/VoiceAssistantModal';
+import { Search, Compass, Library, PlusCircle, User } from 'lucide-react';
+import MainVoiceAssistant from './components/MainVoiceAssistant';
 
 export default function App() {
-  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
   const [sessionId] = useState(() => Math.random().toString(36).substring(7));
-
-  // Placeholder handler for when the voice assistant gets a response
-  const handleVoiceMessageSent = (userMessage: string, assistantResponse: string) => {
-    console.log('Voice interaction complete:', { userMessage, assistantResponse });
-    // In a full app, you might add this to the chat history
-  };
 
   return (
     <div className="flex h-screen w-full bg-[#0f1419] text-white font-sans overflow-hidden">
@@ -33,7 +25,7 @@ export default function App() {
           </div>
 
           <nav className="px-3 space-y-1">
-            <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-[#1e242a] text-[#1da1b8] font-medium">
+            <a href="#" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-[#1e242a] text-[#1da1b8] font-medium transition-all hover:scale-[1.02]">
               <Search size={20} />
               <span>Home</span>
             </a>
@@ -48,11 +40,7 @@ export default function App() {
           </nav>
         </div>
 
-        <div className="p-4 space-y-2">
-          <button className="flex items-center space-x-3 px-3 py-2.5 rounded-lg w-full text-left text-[#a0aab4] hover:bg-[#1e242a]/50 hover:text-white transition-colors">
-            <Settings size={20} />
-            <span className="text-sm font-medium">Settings</span>
-          </button>
+        <div className="p-4">
           <div className="flex items-center space-x-3 px-3 py-2.5 rounded-lg cursor-pointer hover:bg-[#1e242a]/50 transition-colors">
             <div className="w-8 h-8 rounded-full bg-[#2f363c] flex items-center justify-center">
               <User size={16} className="text-[#a0aab4]" />
@@ -62,49 +50,25 @@ export default function App() {
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col relative h-full">
-        <div className="flex-1 overflow-y-auto pb-40">
-          <div className="max-w-3xl mx-auto pt-24 px-6 md:px-8">
-            <h1 className="text-4xl md:text-5xl font-semibold text-center mb-12 tracking-tight">
-              Where knowledge begins
-            </h1>
-            
-            {/* Some placeholder content to make the page look full */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-16 blur-[1px] opacity-60 pointer-events-none">
-              <div className="glass-panel p-5 rounded-xl">
-                <h3 className="text-sm font-medium text-[#a0aab4] mb-2 cursor-pointer hover:text-white">Recent: Quantum computing</h3>
-                <p className="text-gray-300 text-sm">Explain how qubits work without all the complex math.</p>
-              </div>
-              <div className="glass-panel p-5 rounded-xl">
-                <h3 className="text-sm font-medium text-[#a0aab4] mb-2 cursor-pointer hover:text-white">Recent: Healthy recipes</h3>
-                <p className="text-gray-300 text-sm">What are some quick, high-protein vegetarian meals?</p>
-              </div>
-            </div>
-          </div>
+      {/* Main Content Area */}
+      <main className="flex-1 flex flex-col relative h-full bg-main-gradient overflow-hidden">
+        {/* Background Subtle Elements */}
+        <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-[#1da1b8]/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-[#0d8a9e]/5 blur-[120px] rounded-full pointer-events-none" />
+        
+        <div className="flex-1 flex flex-col">
+          {/* Main Integrated Voice Assistant */}
+          <MainVoiceAssistant sessionId={sessionId} />
         </div>
 
-        {/* Floating Centered Voice Button */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 pb-12 flex justify-center bg-gradient-to-t from-[#0f1419] via-[#0f1419] to-transparent pt-24 pointer-events-none">
-          <div className="flex flex-col items-center pointer-events-auto">
-            <VoiceAssistantButton 
-              onClick={() => setIsVoiceModalOpen(true)} 
-              className="w-16 h-16 shadow-2xl"
-            />
-            <span className="text-sm text-[#a0aab4] mt-6 font-medium tracking-wide">
-              Tap to start VoiceBot
-            </span>
-          </div>
+        {/* Footer Hint */}
+        <div className="absolute bottom-10 left-0 right-0 pointer-events-none flex justify-center">
+          <p className="text-[#a0aab4] text-xs font-medium uppercase tracking-[0.2em] opacity-40">
+            Powered by Groq & Microsoft Edge TTS
+          </p>
         </div>
       </main>
-
-      <VoiceAssistantModal
-        isOpen={isVoiceModalOpen}
-        onClose={() => setIsVoiceModalOpen(false)}
-        sessionId={sessionId}
-        language="english"
-        onMessageSent={handleVoiceMessageSent}
-      />
     </div>
   );
 }
+
