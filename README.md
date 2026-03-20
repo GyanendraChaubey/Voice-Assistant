@@ -10,7 +10,9 @@ A premium, high-performance voice assistant with a stunning interface and global
 - **🎙️ Ultra-Low Latency STT**: Real-time transcription using Groq's hosted Whisper model.
 - **🔊 Premium Edge TTS**: Crystal-clear speech synthesis using Microsoft Edge Neural voices.
 - **🌍 Polyglot Support**: Supports **74 unique languages** and **140 regional locales** with automatic script detection.
-- **✨ Premium UI**: A sleek "Perplexity-inspired" interface with glassmorphism, dark mode, and a dynamic **Particle Sphere** visualization.
+- **✨ Pure Voice UI**: A distraction-free, full-screen "Pure Voice" interface with glassmorphism and a dynamic **Particle Sphere**.
+- **🎛️ Voice Selection**: Switch between multiple premium voices (including Hindi and Indian English) in real-time via the in-app settings menu.
+- **⌨️ Keyboard Shortcuts**: High-speed control with `Spacebar` to speak and `Escape` to reset.
 - **⚡ Local VAD**: Energy-based Voice Activity Detection happens entirely in your browser for privacy and speed.
 - **📺 Terminal Sync**: Real-time logging in the backend terminal for monitoring conversations.
 
@@ -75,18 +77,22 @@ Visit [http://localhost:5174](http://localhost:5174) and start talking!
 ---
 
 ## 🎙️ Voice Customization
-The assistant supports a vast library of voices. You can change the primary voice in your `.env` file. 
+While you can set a default voice in `.env`, the app now features an **in-app settings menu** for real-time switching between premium voices:
 
-| Locale | Voice Name | Gender |
-| :--- | :--- | :--- |
-| **India** | `en-IN-NeerjaNeural` | Female |
-| **India** | `en-IN-PrabhatNeural` | Male |
-| **US** | `en-US-AriaNeural` | Female |
-| **US** | `en-US-GuyNeural` | Male |
-| **UK** | `en-GB-SoniaNeural` | Female |
-| **Hindi** | `hi-IN-SwaraNeural` | Female |
+- **Hindi**: Swara (Female), Madhur (Male)
+- **English (India)**: Neerja (Female), Prabhat (Male)
+- **Global / US**: Jenny, Guy, Aria, etc.
 
-The system will **automatically switch** to the correct local voice if the bot replies in a different script (e.g., replying in Hindi code-switches to the Hindi voice automatically).
+The system still supports **automatic script detection**—if the assistant replies in a different language, it will switch to an appropriate local voice automatically.
+
+---
+
+## ⌨️ Keyboard Controls
+For a frictionless experience, use these shortcuts:
+- **`Spacebar`**: Start listening / Record (when idle).
+- **`Escape`**: Stop speaking / Reset the session.
+
+---
 
 ---
 
