@@ -21,7 +21,7 @@ def startup():
     voicebot.load_groq()
 
 @app.post("/api/chat")
-async def chat(request: Request):
+async def chat(request: Request, voice: str = None):
     body = await request.body()
     
     # Ensure body is a multiple of 2 (int16 is 2 bytes)
@@ -50,10 +50,13 @@ async def chat(request: Request):
     print(f"🤖 Bot: {reply}\n")
     
     # 3. Synthesize TTS
+    # Preference order: 1. Request param, 2. Env var, 3. Auto-pick
     import os
     env_voice = os.getenv("EDGE_TTS_VOICE")
-    voice = env_voice if env_voice else voicebot._pick_voice(reply)
-    audio_bytes = await voicebot._tts_to_bytes(reply, voice)
+    final_voice = voice if voice else (env_voice if env_voice else voicebot._pick_voice(reply))
+    
+    print(f"🔊 Synthesis with voice: {final_voice}")
+    audio_bytes = await voicebot._tts_to_bytes(reply, final_voice)
     
     # 4. Return as JSON
     b64_audio = base64.b64encode(audio_bytes).decode('utf-8')

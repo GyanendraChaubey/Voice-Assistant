@@ -5,6 +5,7 @@ export type VoiceState = 'idle' | 'calibrating' | 'listening' | 'processing' | '
 interface UseVoiceAssistantOptions {
   sessionId: string;
   language?: string;
+  voice?: string;
   onTranscript?: (text: string) => void;
   onResponse?: (text: string) => void;
   onError?: (error: string) => void;
@@ -14,6 +15,7 @@ export function useVoiceAssistant({
   onTranscript,
   onResponse,
   onError,
+  voice,
 }: UseVoiceAssistantOptions) {
   const [state, setState] = useState<VoiceState>('idle');
   const [transcript, setTranscript] = useState('');
@@ -79,7 +81,8 @@ export function useVoiceAssistant({
 
     try {
       console.log("[Voice] Sending audio blob of length " + totalLength);
-      const resp = await fetch('http://localhost:8000/api/chat', {
+      const url = `http://localhost:8000/api/chat?voice=${voice || ''}`;
+      const resp = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/octet-stream' },
         body: combined.buffer
