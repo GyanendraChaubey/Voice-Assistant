@@ -180,7 +180,7 @@ export function useVoiceAssistant({
 
       let silenceDurationSec = 0;
       let hasStartedSpeaking = false;
-      const ENERGY_THRESHOLD = 0.01;
+      const ENERGY_THRESHOLD = 0.005; // Lowered from 0.01 for better sensitivity
 
       processor.onaudioprocess = (e) => {
         const inputData = e.inputBuffer.getChannelData(0);
@@ -201,7 +201,7 @@ export function useVoiceAssistant({
            silenceDurationSec = 0;
         } else if (hasStartedSpeaking) {
            silenceDurationSec += e.inputBuffer.duration;
-           if (silenceDurationSec > 1.2) {
+           if (silenceDurationSec > 1.5) { // Increased from 1.2 to allow longer pauses
               // Note: using stopAndSend directly here handles cleanup properly.
               stopAndSend(chunksRef.current);
            }
