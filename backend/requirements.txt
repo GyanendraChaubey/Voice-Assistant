@@ -1,0 +1,14 @@
+# ── STT + LLM (both via Groq cloud API) ───────
+groq>=0.9.0
+
+# ── TTS (Edge-TTS – free, no API key needed) ──
+edge-tts>=6.1
+
+# ── Audio I/O ──────────────────────────────────
+pyaudio>=0.2.14      # microphone capture
+sounddevice>=0.4.7   # playback
+soundfile>=0.12      # decode MP3/WAV from edge-tts
+numpy>=1.24
+
+# ── Utilities ──────────────────────────────────
+python-dotenv>=1.0   # load .env file with GROQ_API_KEY

@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+dist/
+
+# Environment
+.env
+.DS_Store
+
+# Misc
+*.log
