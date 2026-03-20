@@ -2,7 +2,7 @@
 
 A premium, high-performance voice assistant with a stunning interface and global language support. Built with **FastAPI**, **React (Vite)**, **Groq**, and **Microsoft Edge TTS**.
 
-![Main UI](/Users/gyanendrachaubey/.gemini/antigravity/brain/f8588652-39ad-405d-ba6c-f6d6b1ae8261/main_page_perplexity_ui_1773997224202.png)
+![Main UI](frontend/src/assets/pure_voice_ui.png)
 
 ## ✨ Features
 
