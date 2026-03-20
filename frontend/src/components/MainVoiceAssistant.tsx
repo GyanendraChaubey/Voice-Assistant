@@ -99,7 +99,7 @@ export default function MainVoiceAssistant({ sessionId }: MainVoiceAssistantProp
           ref={responseContainerRef}
           className={`w-full max-h-48 overflow-y-auto text-center px-6 transition-all duration-700 ease-out py-4 ${displayedResponse ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4 h-0'}`}
         >
-          <p className="text-2xl md:text-3xl font-light leading-relaxed text-[#f8fafc] drop-shadow-md">
+          <p className="text-lg md:text-xl font-light leading-relaxed text-[#f8fafc] drop-shadow-md">
             {displayedResponse}
           </p>
         </div>

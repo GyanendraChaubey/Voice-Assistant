@@ -59,10 +59,9 @@ EDGE_TTS_VOICE=en-IN-NeerjaNeural
 ### 5. Running the App
 Start both services in separate terminals:
 
-**Backend:**
+**Backend (from root):**
 ```bash
-cd backend
-uvicorn server:app --port 8000 --reload
+uv run uvicorn backend.server:app --port 8000 --reload
 ```
 
 **Frontend:**
